@@ -94,18 +94,6 @@ func NewCoverFactory(width, height int, provider *ImageProvider, titleFont, regu
 
 	// fill cover with background color(white)
 	draw.Draw(prototype, prototype.Rect, image.White, image.Point{}, draw.Src)
-	// draw O RLY?
-	ctx := freetype.NewContext()
-
-	ctx.SetClip(prototype.Rect)
-	ctx.SetDst(prototype)
-
-	ctx.SetHinting(font.HintingNone)
-	ctx.SetSrc(image.Black)
-	ctx.SetFont(orlyFont)
-	ctx.SetFontSize(float64(FontORLYPctH * height / Denominator))
-	var outPadding = PaddingPctH * height / Denominator
-	_, _ = ctx.DrawString("O'RLY?", freetype.Pt(outPadding, height-outPadding))
 
 	return &CoverFactory{
 		width:          width,
@@ -132,7 +120,7 @@ func (c *CoverFactory) PreheatCache(maxImageID int) (err error) {
 }
 
 // Draw outputs the cover in image
-func (c *CoverFactory) Draw(title, topText, author, guideText, guideTextPosition string, primaryColor color.Color, imageID int) (img *image.RGBA, err error) {
+func (c *CoverFactory) Draw(title, topText, author, guideText, guideTextPosition, publisher string, primaryColor color.Color, imageID int) (img *image.RGBA, err error) {
 	img = image.NewRGBA(image.Rectangle{
 		Min: image.Point{},
 		Max: image.Point{c.width, c.height},
@@ -164,10 +152,15 @@ func (c *CoverFactory) Draw(title, topText, author, guideText, guideTextPosition
 
 	ctx.SetHinting(font.HintingNone)
 	ctx.SetSrc(image.Black)
-	ctx.SetFont(c.regularFont)
 
 	var textWidth, lineHeight, textSize int
 	var outPadding = PaddingPctH * c.height / Denominator
+	// draw O RLY?
+	ctx.SetFont(c.orlyFont)
+	ctx.SetFontSize(float64(FontORLYPctH * c.height / Denominator))
+	_, _ = ctx.DrawString(publisher, freetype.Pt(outPadding, c.height-outPadding))
+
+	ctx.SetFont(c.regularFont)
 	// topText, mind the order
 	textSize = TopTextSizePctH * c.height / Denominator
 	lineHeight = textSize * 12 / 10 // nolint: ineffassign
@@ -264,6 +257,7 @@ func (c *CoverFactory) Draw(title, topText, author, guideText, guideTextPosition
 			return
 		}
 	}
+
 
 	return
 }

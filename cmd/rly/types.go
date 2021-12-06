@@ -25,11 +25,13 @@ const (
 	colorField              = "color"
 	guideTextField          = "g_text"
 	guideTextPlacementField = "g_loc"
+	publisherField          = "publisher"
 )
 
 // CoverQuery cover generation request
 type CoverQuery struct {
 	Title              string     `json:"title"`
+	Publisher          string     `json:"publisher"`
 	TopText            string     `json:"top_text"`
 	Author             string     `json:"author"`
 	ImageID            int64      `json:"image_id"`
@@ -50,6 +52,12 @@ func ParseCoverQuery(values url.Values) (cq CoverQuery, err error) {
 		return
 	}
 	cq.Title = item[0]
+
+	if item = values[publisherField]; len(item) == 0 {
+		err = lack(publisherField)
+		return
+	}
+	cq.Publisher = item[0]
 
 	if item = values[topTextField]; len(item) == 0 {
 		err = lack(topTextField)

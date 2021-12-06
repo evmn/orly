@@ -29,6 +29,9 @@
     <label for="top_text">{{$t("top_text")}}</label>
     <input id="top_text" name="top_text" :placeholder="$t('required')" required v-model.trim="input.topText" maxlength="60">
 
+    <label for="publisher">{{$t("publisher")}}</label>
+    <input id="publisher" name="publisher" :placeholder="$t('required')" required v-model.trim="input.publisher" maxlength="60">
+
     <label for="animal_code">{{$t("animal_code")}}</label>
     <input id="animal_code" name="animal_code" type="number" :placeholder="$t('animal_code_placeholder')"
            v-model.number="input.animalCode" min="0" max="41">

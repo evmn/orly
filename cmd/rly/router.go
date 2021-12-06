@@ -68,7 +68,7 @@ func makeCover(t *Task) {
 	if t.Query.ImageID > int64(C.MaxImageID) || t.Query.ImageID < 0 {
 		t.Query.ImageID = 0
 	}
-	img, err := factory.Draw(short(t.Query.Title, 150), short(t.Query.TopText, 180), short(t.Query.Author, 150), short(t.Query.GuideText, 150), t.Query.GuideTextPlacement, t.Query.PrimaryColor, int(t.Query.ImageID))
+	img, err := factory.Draw(short(t.Query.Title, 150), short(t.Query.TopText, 180), short(t.Query.Author, 150), short(t.Query.GuideText, 150), t.Query.GuideTextPlacement, short(t.Query.Publisher, 150), t.Query.PrimaryColor, int(t.Query.ImageID))
 	if err != nil {
 		return
 	}
@@ -171,6 +171,7 @@ func RequestLogger(l *zap.Logger) gin.HandlerFunc {
 					zap.Int("status", c.Writer.Status()),
 					zap.String("title", cq.Title),
 					zap.String("author", cq.Author),
+					zap.String("publisher", cq.Publisher),
 					zap.String("top", cq.TopText),
 					zap.String("guide", cq.GuideText),
 					zap.String("guideP", cq.GuideTextPlacement),

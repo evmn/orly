@@ -85,7 +85,7 @@
         }
 
         // escape user's input
-        this.imgSrc = `/api/generate?g_loc=${input.guideTextPlacement}&g_text=${encodeURIComponent(input.guideText)}&color=${color}&img_id=${coverID}&author=${encodeURIComponent(input.author)}&top_text=${encodeURIComponent(input.topText)}&title=${encodeURIComponent(input.title)}`
+        this.imgSrc = `/api/generate?g_loc=${input.guideTextPlacement}&g_text=${encodeURIComponent(input.guideText)}&color=${color}&img_id=${coverID}&author=${encodeURIComponent(input.author)}&top_text=${encodeURIComponent(input.topText)}&title=${encodeURIComponent(input.title)}&publisher=${encodeURIComponent(input.publisher)}`
       },
       handleLanguageChange: function (newLang) {
         this.$i18n.locale = newLang

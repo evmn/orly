@@ -13,6 +13,7 @@
   "author": "作者",
   "required": "必填",
   "top_text": "顶部文字",
+  "publisher": "出版社",
   "animal_code": "图片序号",
   "animal_code_placeholder": "0-41（见下方图片列表，留空则随机）",
   "color_code": "颜色列表",

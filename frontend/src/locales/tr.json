@@ -13,6 +13,7 @@
   "author": "Yazar",
   "required": "zorunlu",
   "top_text": "Üst Yazı",
+  "publisher": "Yayımcı",
   "animal_code": "Hayvan Kodu",
   "animal_code_placeholder": "0-41 (Kodlar aşağıda listelenmiştir, varsayılan rastgele)",
   "color_code": "Renk Kodu",

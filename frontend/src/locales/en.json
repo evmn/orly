@@ -13,6 +13,7 @@
   "author": "Author",
   "required": "required",
   "top_text": "Top Text",
+  "publisher": "Publisher",
   "animal_code": "Animal Code",
   "animal_code_placeholder": "0-41 (listed below, defaults to random)",
   "color_code": "Color Code",
